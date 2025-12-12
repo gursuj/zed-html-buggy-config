@@ -14,3 +14,12 @@
 ## Notes
 - The fixed config declares the language server explicitly, excludes prettier just in case, and the `"..."` is added to ensure other HTML language servers (like emmet, tailwind) also get attached. You can see for yourself by removing the `"..."` and trying to use emmet snippets. [Zed docs regarding this](https://zed.dev/docs/configuring-languages#choosing-language-servers)
 - To further verify the solution, in the command palette, you can run `dev: open language server logs` and select `vscode-html-language-server` in the dropdown. When attempting to format an html file, it should send a request with `"method":"textDocument/formatting"`. This doesn't happen when using the first config but does with the second one.
+
+## Extra fix for LSP error regarding valid css properties
+`test.html` includes an empty `style` attribute on purpose. View the LSP logs using the steps mentioned above, interact with the html file, and search for `validProperties` in the logs, which shows this error:
+```
+Error while validating file:///home/sujal/.config/zed/zed-html-buggy-config/test.html: Cannot read properties of null (reading 'validProperties')
+TypeError: Cannot read properties of null (reading 'validProperties')
+```
+This seems to be thrown when html files have a style tag or attribute.
+Not sure if it would cause any issues, but a common workaround seems to be to set `validProperties` to an empty object. Shown in [./fix-css-lsp.json](./fix-css-lsp.json). Apply those settings, restart Zed and view the LSP logs to check that the error no longer shows. You may have to save the settings file to force the LSP to load. Based on this [neovim example config](https://neovim.discourse.group/t/help-with-diagnostics-for-html-files/2682/2).

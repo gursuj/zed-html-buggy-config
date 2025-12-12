@@ -1,0 +1,20 @@
+{
+  "languages": {
+    "HTML": {
+      "formatter": "language_server",
+      "language_servers": ["vscode-html-language-server", "!prettier", "..."]
+    }
+  },
+  "lsp": {
+    "vscode-html-language-server": {
+      "settings": {
+        // workaround to prevent html lsp error about validproperties
+        "css": {
+          "lint": {
+            "validProperties": {}
+          }
+        }
+      }
+    }
+  }
+}
