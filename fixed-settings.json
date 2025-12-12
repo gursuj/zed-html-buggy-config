@@ -1,0 +1,8 @@
+{
+  "languages": {
+    "HTML": {
+      "formatter": "language_server",
+      "language_servers": ["vscode-html-language-server", "!prettier", "..."]
+    }
+  }
+}
