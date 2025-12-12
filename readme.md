@@ -12,5 +12,5 @@
 2. Save the test file, which now gets formatted properly.
 
 ## Notes
-- The fixed config declares the language server explicitly, excludes prettier just in case, and the `"..."` is added to ensure other HTML language servers (like emmet, tailwind) also get attached. You can see for yourself by removing it and trying to use emmet snippets. [Zed docs regarding this](https://zed.dev/docs/configuring-languages#choosing-language-servers)
+- The fixed config declares the language server explicitly, excludes prettier just in case, and the `"..."` is added to ensure other HTML language servers (like emmet, tailwind) also get attached. You can see for yourself by removing the `"..."` and trying to use emmet snippets. [Zed docs regarding this](https://zed.dev/docs/configuring-languages#choosing-language-servers)
 - To further verify the solution, in the command palette, you can run `dev: open language server logs` and select `vscode-html-language-server` in the dropdown. When attempting to format an html file, it should send a request with `"method":"textDocument/formatting"`. This doesn't happen when using the first config but does with the second one.
