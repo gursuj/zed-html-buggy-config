@@ -1,4 +1,4 @@
-[minimal-settings.json](./minimal-settings.json) includes the default config recommended in the [Zed docs](https://zed.dev/docs/languages/html#lsp-formatting) to use `vscode-html-language-server` instead of Prettier for formatting HTML. When using this, Zed doesn't format HTML code.
+[minimal-settings.json](./minimal-settings.json) includes the default config recommended in the [Zed docs](https://zed.dev/docs/languages/html#lsp-formatting) to use `vscode-html-language-server` instead of Prettier for formatting HTML. ~~When using this, Zed doesn't format HTML code.~~ **This seems to be fixed now so there's no need to test the instructions given below.**
 
 ## Steps to reproduce issue
 1. Backup Zed settings, then paste contents of [minimal-settings.json](./minimal-settings.json) into `settings.json`.
@@ -16,7 +16,7 @@
 - To further verify the solution, in the command palette, you can run `dev: open language server logs` and select `vscode-html-language-server` in the dropdown. When attempting to format an html file, it should send a request with `"method":"textDocument/formatting"`. This doesn't happen when using the first config but does with the second one.
 
 ## Extra fix for LSP error regarding valid css properties
-`test.html` includes an empty `style` attribute on purpose. View the LSP logs using the steps mentioned above, interact with the html file, and search for `validProperties` in the logs, which shows this error:
+`test.html` includes an empty `style` attribute on purpose. View the LSP logs using the steps mentioned above, interact with the html file for a bit, and search for `validProperties` in the logs, which shows this error:
 ```
 Error while validating file:///home/sujal/.config/zed/zed-html-buggy-config/test.html: Cannot read properties of null (reading 'validProperties')
 TypeError: Cannot read properties of null (reading 'validProperties')
